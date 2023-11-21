@@ -7,7 +7,7 @@ if(.libPaths()[1] == "/usr/lib64/R/library"){
 }
 
 ### 当使用bio/r4环境，指定lib为R4环境lib
-if(R.version$major == "4"){
+if(.libPaths()[1] == "/home/yuanming/mambaforge/envs/bio/lib/R/library"){
     .libPaths(c("/home/yuanming/mambaforge/envs/r4/lib/R/library", .libPaths()))
     message("Using library: ", .libPaths()[1])
 }
