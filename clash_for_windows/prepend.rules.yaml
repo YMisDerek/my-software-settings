@@ -1,0 +1,13 @@
+parsers: # array
+  - reg: .+
+    yaml:
+      prepend-proxy-groups:
+        - name: ChatGPT
+          type: select
+          proxies:
+      commands:
+        - proxy-groups.ChatGPT.proxies=[]proxyNames
+      prepend-rules:
+        - DOMAIN-KEYWORD,ncbi,DIRECT
+        - DOMAIN-SUFFIX,openai.com,ChatGPT
+        - DOMAIN,gemini.google.com,ChatGPT
