@@ -13,7 +13,7 @@ https://vscode.js.cn/docs/languages/r
     - Rpath：/public6/yuanming/software2/miniforge_pypy3/envs/r3/bin/R
     - Rterm：/public6/yuanming/software2/miniforge_pypy3/envs/r3/bin/radian
     ```
-    > 补充：Rpath指定无效
+    > 补充：Rpath指定无效，需通过rterm.option的--r-binary指定实现
     > ```
     > "r.rterm.option": [
     >    "--no-save",
@@ -25,17 +25,17 @@ https://vscode.js.cn/docs/languages/r
    - 输入补全：R扩展自带LSP
 4. 执行选定行后光标跳转至下一行
     > 通过一次执行两条命令实现
-    ```
-        {
-            "key": "ctrl+enter",
-            // "command": "workbench.action.terminal.runSelectedText"
-            "command": "runCommands",
-            "args": {
-                "commands": [
-                    "workbench.action.terminal.runSelectedText",
-                    "cursorDown",
-                ]
-            },
-            "when": "editorTextFocus"
-        },
-    ```
+    >```
+    >   {
+    >        "key": "ctrl+enter",
+    >       // "command": "workbench.action.terminal.runSelectedText"
+    >        "command": "runCommands",
+    >        "args": {
+    >            "commands": [
+    >                "workbench.action.terminal.runSelectedText",
+    >                "cursorDown",
+    >            ]
+    >        },
+    >        "when": "editorTextFocus"
+    >    },
+    >```
