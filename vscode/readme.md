@@ -39,3 +39,16 @@ https://vscode.js.cn/docs/languages/r
     >        "when": "editorTextFocus"
     >    },
     >```
+5. 使vscode使用终端时加载bash_profile中的配置，如alias等等
+    ```
+        "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash",
+            "args": [
+                "-l"
+            ]
+        }
+    },
+    ```
