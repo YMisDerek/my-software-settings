@@ -2,8 +2,8 @@ const enable = true;
 
 function main(config) {
     if (!enable) return config;
-    modify_rules(config);
     set_AI_group(config);
+    modify_rules(config);
     return config;
 }
 
@@ -21,6 +21,21 @@ function modify_rules(params) {
     const rules_AI = [
         'DOMAIN-SUFFIX,openai.com,ChatGPT',
         'DOMAIN,gemini.google.com,ChatGPT',
+        "DOMAIN-KEYWORD,cloudfare,ChatGPT",
+        "DOMAIN-KEYWORD,openai,ChatGPT",
+        "DOMAIN-KEYWORD,sentry,ChatGPT",
+        "DOMAIN-SUFFIX,ai.com,ChatGPT",
+        "DOMAIN-SUFFIX,auth0.com,ChatGPT",
+        "DOMAIN-SUFFIX,challenges.cloudflare.com,ChatGPT",
+        "DOMAIN-SUFFIX,client-api.arkoselabs.com,ChatGPT",
+        "DOMAIN-SUFFIX,events.statsigapi.net,ChatGPT",
+        "DOMAIN-SUFFIX,featuregates.org,ChatGPT",
+        "DOMAIN-SUFFIX,identrust.com,ChatGPT",
+        "DOMAIN-SUFFIX,ingest.sentry.io,ChatGPT",
+        "DOMAIN-SUFFIX,intercom.io,ChatGPT",
+        "DOMAIN-SUFFIX,intercomcdn.com,ChatGPT",
+        "DOMAIN-SUFFIX,openaiapi-site.azureedge.net,ChatGPT",
+        "DOMAIN-SUFFIX,stripe.com,ChatGPT"
     ];
 
     const rules_usally = [
@@ -42,25 +57,6 @@ function set_AI_group(params) {
     // 构造排除关键字的正则表达式
     const regex = new RegExp(`^(?!.*(${mustNotHaveKeywords.join('|')})).*$`, 'i');
 
-    const rules = [
-        "DOMAIN-KEYWORD,cloudfare,ChatGPT",
-        "DOMAIN-KEYWORD,openai,ChatGPT",
-        "DOMAIN-KEYWORD,sentry,ChatGPT",
-        "DOMAIN-SUFFIX,ai.com,ChatGPT",
-        "DOMAIN-SUFFIX,auth0.com,ChatGPT",
-        "DOMAIN-SUFFIX,challenges.cloudflare.com,ChatGPT",
-        "DOMAIN-SUFFIX,client-api.arkoselabs.com,ChatGPT",
-        "DOMAIN-SUFFIX,events.statsigapi.net,ChatGPT",
-        "DOMAIN-SUFFIX,featuregates.org,ChatGPT",
-        "DOMAIN-SUFFIX,identrust.com,ChatGPT",
-        "DOMAIN-SUFFIX,ingest.sentry.io,ChatGPT",
-        "DOMAIN-SUFFIX,intercom.io,ChatGPT",
-        "DOMAIN-SUFFIX,intercomcdn.com,ChatGPT",
-        "DOMAIN-SUFFIX,openai.com,ChatGPT",
-        "DOMAIN-SUFFIX,openaiapi-site.azureedge.net,ChatGPT",
-        "DOMAIN-SUFFIX,stripe.com,ChatGPT"
-    ];
-
     // 过滤掉名称包含排除关键字的代理节点
     const proxies = params.proxies
         .filter(i => regex.test(i.name))  // 保留不包含排除关键字的代理
@@ -75,17 +71,10 @@ function set_AI_group(params) {
         groups.unshift(newGroup); // 将新组插入到第一个位置
     }
 
-    // 合并规则，去重
-    params.rules = [...new Set(rules.concat(params.rules))];
-
     return params;
 }
 
 // 创建代理组
 function createGroup(name, type, proxies) {
-    return {
-        name: name,
-        type: type,
-        proxies,
-    };
+    return { name: name, type: type, proxies };
 }
