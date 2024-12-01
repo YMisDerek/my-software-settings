@@ -38,11 +38,11 @@ function modify_rules(params) {
         "DOMAIN-SUFFIX,stripe.com,ChatGPT"
     ];
 
-    const rules_usally = [
+    const rules_daily = [
         'DOMAIN-KEYWORD,keke1,DIRECT',
     ];
 
-    params.rules = rules_SCI.concat(rules_AI, rules_usally, params.rules);
+    params.rules = rules_SCI.concat(rules_AI, rules_daily, params.rules);
 }
 
 // AI组配置
@@ -50,7 +50,7 @@ function set_AI_group(params) {
 
     // 排除的关键字，忽略大小写
     const mustNotHaveKeywords = [
-        '实验性', '香港', '日本', '台湾', 'TW',
+        '实验性', '香港', 'HK', 'HongKong', '日本', '台湾', 'TW',
         "剩余", "到期", "主页", "官网", "游戏", "关注", "网站", "地址", "有效", "网址", "禁止", "邮箱", "发布", "客服", "订阅", "节点", "问题", "联系"
     ];
 
@@ -67,7 +67,6 @@ function set_AI_group(params) {
     // 检查是否已经有名为 "ChatGPT" 的代理组，避免重复添加
     if (!groups.some(group => group.name === "ChatGPT")) {
         const newGroup = createGroup("ChatGPT", "select", proxies);  // 创建新的 ChatGPT 组
-        // groups.splice(1, 0, newGroup);  // 在第二个位置插入新组
         groups.unshift(newGroup); // 将新组插入到第一个位置
     }
 
