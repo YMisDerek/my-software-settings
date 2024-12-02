@@ -16,6 +16,7 @@ function modify_rules(params) {
         'DOMAIN-KEYWORD,david,DIRECT',
         'DOMAIN-KEYWORD,nature,DIRECT',
         'DOMAIN-KEYWORD,science,DIRECT',
+        'DOMAIN-KEYWORD,biomedcentral,DIRECT'
     ];
 
     const rules_AI = [
@@ -50,8 +51,9 @@ function set_AI_group(params) {
 
     // 排除的关键字，忽略大小写
     const mustNotHaveKeywords = [
-        '实验性', '香港', 'HK', 'HongKong', '日本', '台湾', 'TW',
-        "剩余", "到期", "主页", "官网", "游戏", "关注", "网站", "地址", "有效", "网址", "禁止", "邮箱", "发布", "客服", "订阅", "节点", "问题", "联系"
+        '香港', 'HK', 'HongKong', '日本', 'Japan', 'JP', '台湾', 'Taiwan', 'TW',
+        "剩余", "到期", "主页", "官网", "游戏", "关注", "网站", "地址", "有效", "网址", "禁止", 
+        '实验性',"邮箱", "发布", "客服", "订阅", "节点", "问题", "联系"
     ];
 
     // 构造排除关键字的正则表达式
