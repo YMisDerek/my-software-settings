@@ -16,14 +16,15 @@ function modify_rules(params) {
         'DOMAIN-KEYWORD,david,DIRECT',
         'DOMAIN-KEYWORD,nature,DIRECT',
         'DOMAIN-KEYWORD,science,DIRECT',
+        'DOMAIN-KEYWORD,cell,DIRECT',
         'DOMAIN-KEYWORD,biomedcentral,DIRECT'
     ];
 
     const rules_AI = [
-        'DOMAIN-SUFFIX,openai.com,ChatGPT',
         'DOMAIN,gemini.google.com,ChatGPT',
-        "DOMAIN-KEYWORD,cloudfare,ChatGPT",
+        'DOMAIN-KEYWORD,chatgpt,ChatGPT',
         "DOMAIN-KEYWORD,openai,ChatGPT",
+        "DOMAIN-KEYWORD,cloudfare,ChatGPT",
         "DOMAIN-KEYWORD,sentry,ChatGPT",
         "DOMAIN-SUFFIX,ai.com,ChatGPT",
         "DOMAIN-SUFFIX,auth0.com,ChatGPT",
@@ -35,15 +36,15 @@ function modify_rules(params) {
         "DOMAIN-SUFFIX,ingest.sentry.io,ChatGPT",
         "DOMAIN-SUFFIX,intercom.io,ChatGPT",
         "DOMAIN-SUFFIX,intercomcdn.com,ChatGPT",
-        "DOMAIN-SUFFIX,openaiapi-site.azureedge.net,ChatGPT",
         "DOMAIN-SUFFIX,stripe.com,ChatGPT"
     ];
 
-    const rules_daily = [
+    const rules_extra = [
+        'DOMAIN,hcfy.ai,ChatGPT',
         'DOMAIN-KEYWORD,keke1,DIRECT',
     ];
 
-    params.rules = rules_SCI.concat(rules_AI, rules_daily, params.rules);
+    params.rules = rules_SCI.concat(rules_AI, rules_extra, params.rules);
 }
 
 // AI组配置
@@ -52,8 +53,8 @@ function set_AI_group(params) {
     // 排除的关键字，忽略大小写
     const mustNotHaveKeywords = [
         '香港', 'HK', 'HongKong', '日本', 'Japan', 'JP', '台湾', 'Taiwan', 'TW',
-        "剩余", "到期", "主页", "官网", "游戏", "关注", "网站", "地址", "有效", "网址", "禁止", 
-        '实验性',"邮箱", "发布", "客服", "订阅", "节点", "问题", "联系"
+        "剩余", "到期", "主页", "官网", "游戏", "关注", "网站", "地址", "有效", "网址", "禁止",
+        '实验性', "邮箱", "发布", "客服", "订阅", "节点", "问题", "联系"
     ];
 
     // 构造排除关键字的正则表达式
