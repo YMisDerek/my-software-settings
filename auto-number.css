@@ -1,0 +1,95 @@
+/* 全局初始化计数器 */
+.protyle-wysiwyg, .b3-typography {
+    counter-reset: h1 0;
+}
+
+/* 一级标题：章节编号，重置二级标题计数器 */
+.protyle-wysiwyg [data-node-id].h1, .b3-typography h1 {
+    counter-increment: h1;
+    counter-reset: h2 0 h3 0 h4 0 h5 0 h6 0;
+}
+
+.protyle-wysiwyg [data-node-id].h1::before, .b3-typography h1::before {
+    content: "第" counter(h1, cjk-ideographic) "章  ";
+    float: left;
+    display: inline;
+    margin-right: 0.5em;
+    vertical-align: baseline;
+}
+
+/* 二级标题：节编号，重置三级标题计数器 */
+.protyle-wysiwyg [data-node-id].h2, .b3-typography h2 {
+    counter-increment: h2;
+    counter-reset: h3 0 h4 0 h5 0 h6 0;
+}
+
+.protyle-wysiwyg [data-node-id].h2::before, .b3-typography h2::before {
+    content: "第" counter(h2, cjk-ideographic) "节  ";
+    float: left;
+    display: inline;
+    margin-right: 0.5em;
+    vertical-align: baseline;
+}
+
+/* 三级标题：段编号，重置四级标题计数器 */
+.protyle-wysiwyg [data-node-id].h3, .b3-typography h3 {
+    counter-increment: h3;
+    counter-reset: h4 0 h5 0 h6 0;
+}
+
+.protyle-wysiwyg [data-node-id].h3::before, .b3-typography h3::before {
+    content: counter(h3, cjk-ideographic) "、";
+    float: left;
+    display: inline;
+    margin-right: 0.5em;
+    vertical-align: baseline;
+}
+
+/* 四级标题：编号，重置五级标题计数器 */
+.protyle-wysiwyg [data-node-id].h4, .b3-typography h4 {
+    counter-increment: h4;
+    counter-reset: h5 0 h6 0;
+}
+
+.protyle-wysiwyg [data-node-id].h4::before, .b3-typography h4::before {
+    content: "(" counter(h4, cjk-ideographic) "). ";
+    float: left;
+    display: inline;
+    margin-right: 0.5em;
+    vertical-align: baseline;
+}
+
+/* 五级标题：编号，重置六级标题计数器 */
+.protyle-wysiwyg [data-node-id].h5, .b3-typography h5 {
+    counter-increment: h5;
+    counter-reset: h6 0;
+}
+
+.protyle-wysiwyg [data-node-id].h5::before, .b3-typography h5::before {
+    content: counter(h5, decimal) ". ";
+    float: left;
+    display: inline;
+    margin-right: 0.5em;
+    vertical-align: baseline;
+}
+
+/* 六级标题：编号 */
+.protyle-wysiwyg [data-node-id].h6, .b3-typography h6 {
+    counter-increment: h6;
+}
+
+.protyle-wysiwyg [data-node-id].h6::before, .b3-typography h6::before {
+    content: "(" counter(h6, decimal) "). ";
+    float: left;
+    display: inline;
+    margin-right: 0.5em;
+    vertical-align: baseline;
+}
+
+
+
+/* -----------------消除h1-h6标题中含有引用时导致计数出现自动编号的影响----------------- */
+.protyle-attr::before,
+.protyle-attr--refcount.popover__block::before {
+    display: none;
+}
